@@ -1,0 +1,20 @@
+{
+  "name": "@rahul1115/repo1",
+  "version": "1.0.1",
+  "description": "test package",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rahul1115",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RAHUL1115/repo1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RAHUL1115/repo1/issues"
+  },
+  "homepage": "https://github.com/RAHUL1115/repo1#readme"
+}
