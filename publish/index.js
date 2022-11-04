@@ -44,7 +44,7 @@ async function main(){
         await fs.writeJSON(REPO1OBJECT,allRepoVersion)
 
         // let command = `git push origin master`;
-        let command = `cd ${REPO1} && git commit -am 'pre relese' && npm version patch && git push origin master`;
+        let command = `cd ${REPO1} && git commit -am 'pre relese' && npm version patch && git push origin master && npm publish`;
         const { stdout, stderr } = await exec(command)
         // if(stderr){
         //     throw new Error(stderr)
