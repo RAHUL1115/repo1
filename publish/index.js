@@ -26,15 +26,6 @@ const REPO3PACKAGE = path.join(REPO3,'package.json')
 async function main(){
     // const options = processArgs();
     try {
-        // * first update repo 1
-        // let command1 = `cd ${REPO1} && npm version patch -m "pre relese for version %s"`
-        // let command1 = `cd ${REPO1} && pwd`
-        // const { stdout1, stderr1 } = await exec(command1)
-        // if(stderr1){
-            // throw new Error(stderr1)
-        // }
-        // console.log(stdout1)
-
         // * declearation
         let allRepos = []
         let allRepoVersion = {}
@@ -52,13 +43,13 @@ async function main(){
         // * wirte the output to file
         await fs.writeJSON(REPO1OBJECT,allRepoVersion)
 
-        // let command2 = `git push origin master`;
-        let command2 = `cd ${REPO1} && pwd`
-        const { stdout2, stderr2 } = await exec(command2)
-        if(stderr1){
-            throw new Error(stderr2)
+        // let command = `git push origin master`;
+        let command = `cd ${REPO1} && git commit -am 'pre relese' && npm version patch && git push origin master`;
+        const { stdout, stderr } = await exec(command)
+        if(stderr){
+            throw new Error(stderr)
         }
-        console.log(stdout1)
+        console.log(stdout)
     } catch (error) {
         throw new Error(error)
     }
