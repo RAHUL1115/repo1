@@ -1,6 +1,6 @@
 {
   "name": "@rahul1115/repo1",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "test package",
   "main": "index.js",
   "type": "commonjs",
