@@ -46,10 +46,11 @@ async function main(){
         // let command = `git push origin master`;
         let command = `cd ${REPO1} && git commit -am 'pre relese' && npm version patch && git push origin master`;
         const { stdout, stderr } = await exec(command)
-        if(stderr){
-            throw new Error(stderr)
-        }
-        console.log(stdout)
+        // if(stderr){
+        //     throw new Error(stderr)
+        // }
+        console.log('1',stdout)
+        console.log('2',stderr)
     } catch (error) {
         throw new Error(error)
     }
