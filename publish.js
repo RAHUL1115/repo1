@@ -18,18 +18,17 @@ async function main(){
         name = parentPackageJSON.name;
         version = parentPackageJSON.version;
 
-        
         // update the verison number in the object file
         let trackerJSON = await fs.readJSON(TRACKERJSONTPATH);
         trackerJSON[name] = version;
         await fs.writeJSON(TRACKERJSONTPATH,trackerJSON)
         console.log(trackerJSON)
 
-        // // run npm update of tracker repository
-        // let command2 = `cd ${TRACKERREPOPATH} && git commit -am 'pre relese' && npm version patch && git push origin master && npm publish`;
-        // const stdData2 = await exec(command2)
-        // console.log(`stdout : ${stdData2.stdout}`)
-        // console.log(`stderr : ${stdData2.stderr}`)
+        // update and publish tracker repository
+        let command2 = `cd ${TRACKERPATH} && git commit -am 'pre relese' && npm version patch && git push origin master && npm publish`;
+        const stdData2 = await exec(command2)
+        console.log(`stdout : ${stdData2.stdout}`)
+        console.log(`stderr : ${stdData2.stderr}`)
 
         // post clean up
         await fs.remove(TRACKERPATH);
