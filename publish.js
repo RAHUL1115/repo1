@@ -22,7 +22,6 @@ async function main(){
         let trackerJSON = await fs.readJSON(TRACKERJSONTPATH);
         trackerJSON[name] = version;
         await fs.writeJSON(TRACKERJSONTPATH,trackerJSON)
-        console.log(trackerJSON)
 
         // update and publish tracker repository
         let command2 = `cd ${TRACKERPATH} && git commit -am 'pre relese' && npm version patch && git push origin master && npm publish`;
