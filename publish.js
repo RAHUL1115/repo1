@@ -3,7 +3,7 @@ const path = require('path');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
-// * repo1 path and repo1 object path
+// * tacker repo and parent repo paths
 const TRACKERFOLDER = './.tracker/'
 const PARENTPACKAGEJSONPATH = path.join(path.resolve(), './package.json');
 const TRACKERPATH = path.join(path.resolve(),TRACKERFOLDER);
