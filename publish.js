@@ -4,7 +4,6 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 // * repo1 path and repo1 object path
-const TARCKERREPOURL = 'https://github.com/rahul1115/repo1.git';
 const TRACKERFOLDER = './.tracker/'
 const PARENTPACKAGEJSONPATH = path.join(path.resolve(), './package.json');
 const TRACKERPATH = path.join(path.resolve(),TRACKERFOLDER);
@@ -22,7 +21,7 @@ async function main(){
         
         // update the verison number in the object file
         let trackerJSON = await fs.readJSON(TRACKERJSONTPATH);
-        trackerJSON['name'] = version;
+        trackerJSON[name] = version;
         await fs.writeJSON(TRACKERJSONTPATH,trackerJSON)
         console.log(trackerJSON)
 
@@ -35,6 +34,7 @@ async function main(){
         // post clean up
         await fs.remove(TRACKERPATH);
     } catch (error) {
+        console.error(error)
         throw new Error(error)
     }
 }
