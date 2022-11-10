@@ -4,10 +4,13 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 // * tacker repo and parent repo paths
-const TRACKERFOLDER = './.tracker/'
+// const TRACKERFOLDER = './.tracker/'
+// const PARENTPACKAGEJSONPATH = path.join(path.resolve(), './package.json');
+// const TRACKERPATH = path.join(path.resolve(),TRACKERFOLDER);
+// const TRACKERJSONTPATH = path.join(TRACKERPATH,'./object/repo.json');
+const TRACKERPATH = __dirname;
+const TRACKERJSONTPATH = path.join(TRACKERPATH, './object/repo.json');
 const PARENTPACKAGEJSONPATH = path.join(path.resolve(), './package.json');
-const TRACKERPATH = path.join(path.resolve(),TRACKERFOLDER);
-const TRACKERJSONTPATH = path.join(TRACKERPATH,'./object/repo.json');
 
 // * main function
 async function main(){
@@ -18,16 +21,16 @@ async function main(){
         name = parentPackageJSON.name;
         version = parentPackageJSON.version;
 
-        // update the verison number in the object file
+        // update the version number in the object file
         let trackerJSON = await fs.readJSON(TRACKERJSONTPATH);
         trackerJSON[name] = version;
         await fs.writeJSON(TRACKERJSONTPATH,trackerJSON)
 
         // update and publish tracker repository
-        let command2 = `cd ${TRACKERPATH} && git commit -am 'pre relese' && npm version patch && git push origin master && npm publish`;
-        const stdData2 = await exec(command2)
-        console.log(`stdout : ${stdData2.stdout}`)
-        console.log(`stderr : ${stdData2.stderr}`)
+        let command = `cd ${TRACKERPATH} && git commit -am 'pre release' && npm version patch && git push origin master && npm publish`;
+        const stdData = await exec(command)
+        console.log(`stdout : ${stdData.stdout}`)
+        console.log(`stderr : ${stdData.stderr}`)
 
         // post clean up
         await fs.remove(TRACKERPATH);
