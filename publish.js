@@ -31,13 +31,13 @@ async function main(){
         const stdData = await exec(command)
         console.log(`stdout : ${stdData.stdout}`)
         console.log(`stderr : ${stdData.stderr}`)
-
-        // post clean up
-        await fs.remove(TRACKERPATH);
     } catch (error) {
         console.error(error)
         throw new Error(error)
-    }
+    } finally {
+        // post clean up
+        await fs.remove(TRACKERPATH);
+    };
 }
 
 main()
