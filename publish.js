@@ -33,7 +33,6 @@ async function main(){
         console.log(`stderr : ${stdData.stderr}`)
     } catch (error) {
         console.error(error)
-        throw new Error(error)
     } finally {
         // post clean up
         await fs.remove(TRACKERPATH);
