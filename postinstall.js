@@ -6,32 +6,26 @@ const exec = util.promisify(require('child_process').exec);
 const tracker = require('./index') // get tracker object
 const parentPackageJSON = require('../../../package.json') // get parent packageJSON
 
-async function main() { 
-    let isProd = true;
-    let prod = parentPackageJSON?.nexsales?.prod
-    let prodLength = Object.keys(prod).length;
-    let dev = parentPackageJSON?.nexsales?.dev
-    let devLength = Object.keys(dev).length;
+// else always install prod
+(async function() { 
+    let prodPackages = parentPackageJSON?.nexsales?.prod || {};
+    let devPackages = parentPackageJSON?.nexsales?.dev || {};
 
-    // * necessary variables
+    // necessary variables
     let packagesToInstall = ``;
-    let packageObject;
-
-    // ? change isProd according to arguments
+    let packageObject = prodPackages
+    
+    // change packageObject according to environment type
     if (process.env.BUILD == 'dev') {
-        isProd = false;
+        packageObject = devPackages;
     }
 
-    // ? use the object according to environment
-    if(isProd && prod && prodLength > 0){
-        packageObject = prod
-    } else if(!isProd && dev && devLength > 0) { 
-        packageObject = dev
-    } else{
-        packageObject = tracker
+    // check if packageObject is type of object
+    if(typeof(a) != 'object'){
+        packageObject = {};
     }
 
-    // ? construct packages string from packageObject
+    // construct packages string from packageObject
     Object.entries(packageObject).forEach(([packageName, packageVersion]) => {
         if(tracker[packageName]){
             packageVersion = packageVersion === "*" ? tracker[packageName] : packageVersion;
@@ -43,6 +37,4 @@ async function main() {
     let command = `npm install --no-save ${packagesToInstall}`;
     const stdData = await exec(command)
     console.log(`stdout : ${stdData.stdout}`)
-}
-
-main();
+})()

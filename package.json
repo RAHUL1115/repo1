@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "update": "node ./publish/index.js"
+    "update": "node ./publish.js"
   },
   "author": "rahul1115",
   "license": "ISC",
